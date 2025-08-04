@@ -45,8 +45,8 @@ jobs:
         run: |
           IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app"
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
-            docker pull $IMAGE_NAME
-            docker stop nodejs-demo-app || true
-            docker rm nodejs-demo-app || true
-            docker run -itd --name nodejs-demo-app -p 80:80 $IMAGE_NAME
+            sudo docker pull $IMAGE_NAME
+            sudo docker stop nodejs-demo-app || true
+            sudo docker rm nodejs-demo-app || true
+            sudo docker run -itd --name nodejs-demo-app -p 80:80 $IMAGE_NAME
           "
