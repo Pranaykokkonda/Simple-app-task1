@@ -1,6 +1,6 @@
 # 🚀Simple Node.js Application with CI/CD Pipeline
 
-This project showcases a simple Node.js application that is automatically tested. The application is then built into a Docker image, which is pushed to Docker Hub. Finally, the image is deployed to a remote server using GitHub Actions as part of a continuous integration and deployment (CI/CD) pipeline.
+This project showcases a simple Node.js application that is automatically tested. The application is then built into a Docker image, which is pushed to Docker Hub. Finally, the image is deployed to a remote server using GitHub Actions as part of a continuous integration and continuous deployment (CI/CD) pipeline.
 
 ## 🧱 Tech Stack
 
