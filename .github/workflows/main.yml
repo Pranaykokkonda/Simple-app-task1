@@ -43,9 +43,10 @@ jobs:
 
       - name: Deploy Docker container on remote server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            docker pull ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app
-#            docker stop nodejs-demo-app || true
-#            docker rm nodejs-demo-app || true
-            docker run -itd --name nodejs-demo-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app
-          EOF
+          IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+            docker pull $IMAGE_NAME
+            docker stop nodejs-demo-app || true
+            docker rm nodejs-demo-app || true
+            docker run -itd --name nodejs-demo-app -p 80:80 $IMAGE_NAME
+          "
