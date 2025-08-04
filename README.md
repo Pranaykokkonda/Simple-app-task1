@@ -35,4 +35,6 @@ Make sure to update your GitHub Repository secrets and variables with:
 - `SERVER_KEY`
 - `SERVER_USER`
 
-
+## 💻 Access the application
+• Access your Node.js application with public IP address
+`http://ip-address/`
