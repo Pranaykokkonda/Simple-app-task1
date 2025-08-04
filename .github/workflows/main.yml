@@ -35,3 +35,17 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+
+      - name: Deploy Docker container on remote server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            docker pull ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app
+#            docker stop nodejs-demo-app || true
+#            docker rm nodejs-demo-app || true
+            docker run -itd --name nodejs-demo-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app
+          EOF
